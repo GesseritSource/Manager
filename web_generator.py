@@ -23,206 +23,184 @@ def generate_guild_webpage(guild_data: Dict[str, Any], output_file: str):
         }}
         
         body {{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
             color: #333;
-            min-height: 100vh;
+            line-height: 1.6;
             padding: 20px;
         }}
         
         .container {{
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }}
         
         .header {{
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4a5568;
             color: white;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
-            position: relative;
-        }}
-        
-        .header::before {{
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-            opacity: 0.3;
         }}
         
         .header h1 {{
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
         }}
         
         .header p {{
-            font-size: 1.2em;
+            font-size: 1.1em;
             opacity: 0.9;
-            position: relative;
-            z-index: 1;
         }}
         
         .content {{
-            padding: 40px;
+            padding: 30px;
         }}
         
         .section {{
-            margin-bottom: 40px;
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid #667eea;
+            margin-bottom: 30px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 20px;
+            border-left: 4px solid #4a5568;
         }}
         
         .section h2 {{
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
         }}
         
-        .member-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        .member-list {{
+            list-style: none;
         }}
         
-        .member-card {{
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.3s ease;
-        }}
-        
-        .member-card:hover {{
-            transform: translateY(-5px);
+        .member-item {{
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
         }}
         
         .member-name {{
-            font-size: 1.3em;
+            font-size: 1.2em;
             font-weight: bold;
-            color: #333;
+            color: #2d3748;
             margin-bottom: 5px;
         }}
         
         .member-class {{
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 10px;
+            color: #4a5568;
+            font-weight: 500;
+            margin-bottom: 8px;
         }}
         
         .member-description {{
-            color: #666;
-            font-style: italic;
+            color: #718096;
+            font-size: 0.9em;
         }}
         
         .quest-item {{
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 4px solid #28a745;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
         }}
         
         .quest-item.completed {{
-            border-left-color: #6c757d;
-            opacity: 0.7;
+            background: #f7fafc;
+            opacity: 0.8;
         }}
         
         .quest-title {{
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
+            color: #2d3748;
+            margin-bottom: 5px;
         }}
         
         .quest-difficulty {{
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: 2px 8px;
+            border-radius: 3px;
             font-size: 0.8em;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-weight: 500;
+            margin-bottom: 8px;
         }}
         
-        .difficulty-easy {{ background: #d4edda; color: #155724; }}
-        .difficulty-normal {{ background: #fff3cd; color: #856404; }}
-        .difficulty-hard {{ background: #f8d7da; color: #721c24; }}
-        .difficulty-legendary {{ background: #d1ecf1; color: #0c5460; }}
+        .difficulty-easy {{ background: #c6f6d5; color: #22543d; }}
+        .difficulty-normal {{ background: #fef5e7; color: #744210; }}
+        .difficulty-hard {{ background: #fed7d7; color: #742a2a; }}
+        .difficulty-legendary {{ background: #bee3f8; color: #2a4365; }}
         
         .quest-description {{
-            color: #666;
-            margin-bottom: 10px;
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-size: 0.9em;
         }}
         
         .quest-reward {{
-            color: #28a745;
-            font-weight: 600;
+            color: #38a169;
+            font-weight: 500;
+            font-size: 0.9em;
         }}
         
-        .resources {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+        .resource-list {{
+            list-style: none;
         }}
         
-        .resource-card {{
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
+        .resource-item {{
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }}
+        
+        .resource-name {{
+            font-weight: 500;
+            color: #2d3748;
         }}
         
         .resource-value {{
-            font-size: 2em;
             font-weight: bold;
-            color: #333;
-        }}
-        
-        .resource-label {{
-            color: #666;
-            margin-top: 5px;
+            color: #38a169;
         }}
         
         .announcement {{
-            background: #e3f2fd;
-            border-left: 4px solid #2196f3;
+            background: white;
+            border: 1px solid #e2e8f0;
             border-radius: 5px;
             padding: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }}
         
         .announcement-date {{
-            color: #666;
-            font-size: 0.9em;
+            color: #718096;
+            font-size: 0.8em;
             margin-bottom: 5px;
         }}
         
         .announcement-message {{
-            color: #333;
+            color: #2d3748;
         }}
         
         .footer {{
-            background: #f8f9fa;
+            background: #f7fafc;
             padding: 20px;
             text-align: center;
-            color: #666;
-            border-top: 1px solid #e9ecef;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.9em;
         }}
         
         .status-active {{
@@ -285,8 +263,8 @@ def generate_announcements_section(announcements):
     if not announcements:
         return """
         <div class="section">
-            <h2>📢 Guild Announcements</h2>
-            <div class="empty-state">No announcements at this time.</div>
+            <h2>Guild Announcements</h2>
+            <p>No announcements at this time.</p>
         </div>"""
     
     announcements_html = ""
@@ -300,7 +278,7 @@ def generate_announcements_section(announcements):
     
     return f"""
     <div class="section">
-        <h2>📢 Guild Announcements</h2>
+        <h2>Guild Announcements</h2>
         {announcements_html}
     </div>"""
 
@@ -309,28 +287,27 @@ def generate_members_section(members):
     if not members:
         return """
         <div class="section">
-            <h2>👥 Guild Members</h2>
-            <div class="empty-state">No guild members yet. The adventure awaits!</div>
+            <h2>Guild Members</h2>
+            <p>No guild members yet. The adventure awaits!</p>
         </div>"""
     
     members_html = ""
     for member in members.values():
-        status_class = "status-active" if member.get('status') == 'active' else "status-inactive"
-        status_icon = "🟢" if member.get('status') == 'active' else "🔴"
+        status = "Active" if member.get('status') == 'active' else "Inactive"
         
         description = f'<div class="member-description">{member.get("description", "")}</div>' if member.get("description") else ""
         
         members_html += f"""
-        <div class="member-card">
-            <div class="member-name">{status_icon} {member['name']}</div>
+        <div class="member-item">
+            <div class="member-name">{member['name']} ({status})</div>
             <div class="member-class">Level {member.get('level', 1)} {member.get('class', 'Adventurer')}</div>
             {description}
         </div>"""
     
     return f"""
     <div class="section">
-        <h2>👥 Guild Members</h2>
-        <div class="member-grid">
+        <h2>Guild Members</h2>
+        <div class="member-list">
             {members_html}
         </div>
     </div>"""
@@ -340,8 +317,8 @@ def generate_quests_section(quests):
     if not quests:
         return """
         <div class="section">
-            <h2>📋 Guild Quests</h2>
-            <div class="empty-state">No quests available. Check back later for new adventures!</div>
+            <h2>Guild Quests</h2>
+            <p>No quests available. Check back later for new adventures!</p>
         </div>"""
     
     # Separate available and completed quests
@@ -359,11 +336,11 @@ def generate_quests_section(quests):
     # Available quests first
     for quest in available_quests:
         difficulty_class = f"difficulty-{quest.get('difficulty', 'normal').lower()}"
-        reward_html = f'<div class="quest-reward">💰 Reward: {quest["reward"]}</div>' if quest.get("reward") else ""
+        reward_html = f'<div class="quest-reward">Reward: {quest["reward"]}</div>' if quest.get("reward") else ""
         
         quests_html += f"""
         <div class="quest-item">
-            <div class="quest-title">📋 {quest['title']}</div>
+            <div class="quest-title">{quest['title']}</div>
             <span class="quest-difficulty {difficulty_class}">{quest.get('difficulty', 'Normal')}</span>
             <div class="quest-description">{quest['description']}</div>
             {reward_html}
@@ -372,11 +349,11 @@ def generate_quests_section(quests):
     # Completed quests
     for quest in completed_quests:
         difficulty_class = f"difficulty-{quest.get('difficulty', 'normal').lower()}"
-        reward_html = f'<div class="quest-reward">💰 Reward: {quest["reward"]}</div>' if quest.get("reward") else ""
+        reward_html = f'<div class="quest-reward">Reward: {quest["reward"]}</div>' if quest.get("reward") else ""
         
         quests_html += f"""
         <div class="quest-item completed">
-            <div class="quest-title">✅ {quest['title']} (Completed)</div>
+            <div class="quest-title">{quest['title']} (Completed)</div>
             <span class="quest-difficulty {difficulty_class}">{quest.get('difficulty', 'Normal')}</span>
             <div class="quest-description">{quest['description']}</div>
             {reward_html}
@@ -384,31 +361,31 @@ def generate_quests_section(quests):
     
     return f"""
     <div class="section">
-        <h2>📋 Guild Quests</h2>
+        <h2>Guild Quests</h2>
         {quests_html}
     </div>"""
 
 def generate_resources_section(resources):
     """Generate the resources section"""
     resources_html = f"""
-    <div class="resource-card">
-        <div class="resource-value">💰 {resources.get('gold', 0)}</div>
-        <div class="resource-label">Gold</div>
+    <div class="resource-item">
+        <div class="resource-name">Gold</div>
+        <div class="resource-value">{resources.get('gold', 0)}</div>
     </div>"""
     
     items = resources.get('items', {})
     if items:
         for item_name, quantity in items.items():
             resources_html += f"""
-            <div class="resource-card">
-                <div class="resource-value">📦 {quantity}</div>
-                <div class="resource-label">{item_name}</div>
+            <div class="resource-item">
+                <div class="resource-name">{item_name}</div>
+                <div class="resource-value">{quantity}</div>
             </div>"""
     
     return f"""
     <div class="section">
-        <h2>💎 Guild Resources</h2>
-        <div class="resources">
+        <h2>Guild Resources</h2>
+        <div class="resource-list">
             {resources_html}
         </div>
     </div>"""
