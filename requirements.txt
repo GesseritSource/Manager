@@ -1,0 +1,3 @@
+# Fantasy Guild Manager CLI Requirements
+# No external dependencies required - uses only Python standard library
+# Compatible with Python 3.6+

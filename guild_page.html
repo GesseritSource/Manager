@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dragon Slayers - Guild Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #667eea;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .member-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .member-class {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .member-description {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .quest-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .quest-item.completed {
+            border-left-color: #6c757d;
+            opacity: 0.7;
+        }
+        
+        .quest-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .quest-difficulty {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .difficulty-easy { background: #d4edda; color: #155724; }
+        .difficulty-normal { background: #fff3cd; color: #856404; }
+        .difficulty-hard { background: #f8d7da; color: #721c24; }
+        .difficulty-legendary { background: #d1ecf1; color: #0c5460; }
+        
+        .quest-description {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .quest-reward {
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .resource-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .resource-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .resource-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .announcement {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .announcement-date {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .announcement-message {
+            color: #333;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .status-active {
+            color: #28a745;
+        }
+        
+        .status-inactive {
+            color: #dc3545;
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚔️ The Dragon Slayers</h1>
+            <p>Elite adventurers protecting the realm from ancient threats</p>
+        </div>
+        
+        <div class="content">
+            
+    <div class="section">
+        <h2>📢 Guild Announcements</h2>
+        
+        <div class="announcement">
+            <div class="announcement-date">July 26, 2025 at 01:16 AM</div>
+            <div class="announcement-message">Guild meeting this Friday at 8 PM! We'll be planning our assault on the Lost Temple.</div>
+        </div>
+    </div>
+            
+    <div class="section">
+        <h2>👥 Guild Members</h2>
+        <div class="member-grid">
+            
+        <div class="member-card">
+            <div class="member-name">🟢 Aria Stormwind</div>
+            <div class="member-class">Level 12 Wizard</div>
+            <div class="member-description">Master of elemental magic and guild strategist</div>
+        </div>
+        <div class="member-card">
+            <div class="member-name">🟢 Thorin Ironbeard</div>
+            <div class="member-class">Level 10 Fighter</div>
+            <div class="member-description">Veteran warrior and guild protector</div>
+        </div>
+        <div class="member-card">
+            <div class="member-name">🟢 Luna Shadowstep</div>
+            <div class="member-class">Level 11 Rogue</div>
+            <div class="member-description">Silent blade and scout extraordinaire</div>
+        </div>
+        </div>
+    </div>
+            
+    <div class="section">
+        <h2>📋 Guild Quests</h2>
+        
+        <div class="quest-item">
+            <div class="quest-title">📋 The Lost Temple</div>
+            <span class="quest-difficulty difficulty-hard">Hard</span>
+            <div class="quest-description">Investigate the mysterious temple discovered in the Whispering Woods</div>
+            <div class="quest-reward">💰 Reward: 500 gold and ancient artifacts</div>
+        </div>
+        <div class="quest-item">
+            <div class="quest-title">📋 Goblin Raids</div>
+            <span class="quest-difficulty difficulty-normal">Normal</span>
+            <div class="quest-description">Clear out the goblin camps threatening local villages</div>
+            <div class="quest-reward">💰 Reward: 200 gold per camp</div>
+        </div>
+    </div>
+            
+    <div class="section">
+        <h2>💎 Guild Resources</h2>
+        <div class="resources">
+            
+    <div class="resource-card">
+        <div class="resource-value">💰 1500</div>
+        <div class="resource-label">Gold</div>
+    </div>
+            <div class="resource-card">
+                <div class="resource-value">📦 25</div>
+                <div class="resource-label">Health Potions</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-value">📦 3</div>
+                <div class="resource-label">Mithril Ore</div>
+            </div>
+        </div>
+    </div>
+        </div>
+        
+        <div class="footer">
+            <p>Last updated: July 26, 2025 at 01:16 AM</p>
+            <p>Generated by Fantasy Guild Manager CLI</p>
+        </div>
+    </div>
+</body>
+</html>
